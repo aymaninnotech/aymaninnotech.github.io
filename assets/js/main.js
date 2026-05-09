@@ -1,42 +1,29 @@
-// 1. Loading Screen Logic
-window.addEventListener('load', () => {
+// HANDLE LOADER
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
     setTimeout(() => {
-        const loader = document.getElementById('loader');
-        loader.style.opacity = '0';
-        setTimeout(() => loader.style.display = 'none', 500);
-    }, 2500); // 3-cycle animation feel
+        loader.style.opacity = "0";
+        setTimeout(() => { loader.style.display = "none"; }, 500);
+    }, 2000); // 2-second delay for branding
 });
 
-// 2. Anti-Copy & Source Code Protection
-document.addEventListener('keydown', (e) => {
-    // Block F12, Ctrl+Shift+I, Ctrl+U (View Source)
-    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) {
-        e.preventDefault();
-        alert("Security: Content Protection Active.");
-        return false;
-    }
+// THEME TOGGLE
+const themeBtn = document.getElementById("themeToggle");
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+    themeBtn.textContent = document.body.classList.contains("light-mode") ? "🌙" : "☀️";
 });
 
-// 3. Floating Button Scroll to Top
-const topBtn = document.getElementById('go-to-top');
+// BACK TO TOP VISIBILITY
+const goTopBtn = document.getElementById("goTop");
 window.onscroll = () => {
     if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-        topBtn.style.display = "block";
+        goTopBtn.style.display = "block";
     } else {
-        topBtn.style.display = "none";
+        goTopBtn.style.display = "none";
     }
 };
 
-topBtn.onclick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+goTopBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
 };
-
-// 4. Dark/Light Mode Toggle
-function toggleTheme() {
-    const body = document.documentElement;
-    const current = body.getAttribute('data-theme');
-    body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
-}
-
-// Attach to accessibility button
-document.getElementById('accessibility-btn').onclick = toggleTheme;
