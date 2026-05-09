@@ -5,211 +5,169 @@
   --navy: #020617;
   --charcoal: #0F172A;
   --white: #ffffff;
-  --text-gray: #e5e7eb;
+  --gray-text: #94a3b8;
+  --light-gray: #cbd5f5;
 }
 
-* { box-sizing: border-box; transition: all 0.3s ease; }
-
+/* RESET & BASE */
+* { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background: var(--navy);
-  color: var(--text-gray);
+  color: #e5e7eb;
+  transition: background 0.3s ease;
   line-height: 1.6;
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+body.light {
+  background: var(--white);
+  color: var(--navy);
+}
 
-  <!-- SEO PRIMARY -->
-  <title>AYMAN InnoTech | Smart & Sustainable Technology by Ayman Ullah</title>
-  <meta name="description" content="Official platform of AYMAN InnoTech. Exploring research, journals, and projects in Sustainable Engineering, AI, and Forestry by Ayman Ullah.">
-  <meta name="keywords" content="Ayman InnoTech, Ayman Ullah, Sustainable Technology, AI Research, Environmental Engineering, Smart Systems">
-  <meta name="author" content="Ayman Ullah">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://aymaninnotech.github.io/">
+/* GLOBAL LOADER (AI NEON) */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
 
-  <!-- OPEN GRAPH / FACEBOOK -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="AYMAN InnoTech | Innovation for a Sustainable Future">
-  <meta property="og:description" content="Research, Journals, and Projects focused on Sustainable Technologies and AI.">
-  <meta property="og:url" content="https://aymaninnotech.github.io/">
-  <meta property="og:image" content="assets/media/aymaninnotech@social-preview.png">
+body.light #loader { background: var(--white); }
+#loader.hidden { opacity: 0; visibility: hidden; }
 
-  <!-- TWITTER -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AYMAN InnoTech | Ayman Ullah">
-  <meta name="twitter:image" content="assets/media/aymaninnotech@social-preview.png">
+.loader-inner { text-align: center; user-select: none; }
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/jpeg" href="assets/media/aymaninnotech@logo.jpg">
-
-  <!-- FONTS & CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="dark">
-
- <!-- 🔄 ENHANCED NEON LOADER -->
-<div id="loader">
-  <div class="loader-content">
-    <div class="loader-ai">AI</div>
-    <div class="loader-line"></div>
-    <p class="loader-text">AYMAN InnoTech</p>
-  </div>
-</div>
-  
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="brand">
-      <img src="assets/media/aymaninnotech@logo.jpg" alt="AYMAN InnoTech Logo" class="brand-logo-img">
-      <img src="assets/media/aymaninnotech@brand-title.jpg" alt="AYMAN InnoTech" class="brand-title-img">
-    </div>
-
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="/blogs">Blogs</a>
-      <a href="/projects">Projects</a>
-      <a href="/journals">Journals</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </nav>
-
-    <div class="header-actions">
-      <input type="search" placeholder="Search..." aria-label="Search">
-      <button id="themeToggle" aria-label="Toggle theme">☀️</button>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <h1>AYMAN InnoTech</h1>
-      <h2>Smart, Sustainable & Intelligent Technologies</h2>
-      <p>A personal innovation and research platform by <strong>Ayman Ullah</strong>, focused on engineering, environment, and future-ready intelligent systems.</p>
-      
-      <div class="hero-actions">
-        <a href="/projects" class="btn primary">View Projects</a>
-        <a href="/blogs" class="btn secondary">Read Blog</a>
-      </div>
-    </section>
-
-    <!-- SNAPSHOT SECTION -->
-    <section class="snapshot">
-      <div class="snap">Electrical & Computer Engineering</div>
-      <div class="snap">Forestry & Environment</div>
-      <div class="snap">AI & Data Systems</div>
-      <div class="snap">Sustainable Innovation</div>
-    </section>
-
-    <!-- BUILD SECTION -->
-    <section class="build">
-      <h3>What I’m Building</h3>
-      <ul>
-        <li>Smart Environmental Monitoring Systems</li>
-        <li>Renewable & Energy-Efficient Technologies</li>
-        <li>AI-Driven Climate & Sustainability Solutions</li>
-        <li>Open Knowledge & Research Platforms</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2026 <strong>AYMAN InnoTech</strong> · All rights reserved · <a href="/copyright">Copyright</a></p>
-  </footer>
-
-  <button id="goTop" aria-label="Go to top">↑</button>
-
-  <script src="assets/js/main.js"></script>
-</body>
-</html>
-@keyframes move {
-  0% { background-position: 0%; }
-  100% { background-position: 100%; }
+.loader-ai {
+  display: block;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green), var(--cyan), var(--blue));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aiGradientMove 2.2s linear infinite, aiGlowPulse 1.8s ease-in-out infinite;
 }
 
 .loader-text {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.3em;
+  display: block;
+  margin-top: 0.75rem;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--gray-text);
+}
+
+@keyframes aiGradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes aiGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(6,182,212,0.25)); }
+  50% { filter: drop-shadow(0 0 16px rgba(22,163,74,0.45)); }
 }
 
 /* HEADER */
 .site-header {
   position: sticky;
   top: 0;
+  background: rgba(2, 6, 23, 0.9);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 5%;
-  background: rgba(2, 6, 23, 0.95);
-  backdrop-filter: blur(10px);
   z-index: 100;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.brand { display: flex; gap: 0.75rem; align-items: center; }
-.brand-logo-img { width: 42px; border-radius: 50%; }
-.brand-title-img { height: 28px; }
+.brand { display: flex; align-items: center; gap: 0.75rem; }
+.header-logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.brand-name { font-weight: 700; font-size: 1.1rem; }
+.brand-tagline { font-size: 0.7rem; color: var(--cyan); }
 
 .main-nav a {
-  margin: 0 1rem;
+  margin: 0 0.75rem;
   text-decoration: none;
-  color: var(--text-gray);
-  font-weight: 500;
+  color: var(--light-gray);
+  font-size: 0.9rem;
 }
-
 .main-nav a:hover { color: var(--cyan); }
 
 /* HERO */
-.hero { padding: 8rem 1.5rem; text-align: center; }
-.hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 0; }
-.hero h2 { color: var(--cyan); font-weight: 400; }
+.hero { padding: 6rem 1.5rem; text-align: center; }
+.hero h1 { font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 1rem; }
+.hero h2 { color: var(--cyan); font-weight: 500; margin-bottom: 2rem; }
+.hero p { max-width: 600px; margin: 0 auto 2rem; color: var(--gray-text); }
 
-.btn {
-  display: inline-block;
-  margin: 0.5rem;
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-}
-
+.hero-actions { display: flex; justify-content: center; gap: 1rem; }
+.btn { padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.2s; }
+.btn:hover { transform: translateY(-2px); }
 .primary { background: linear-gradient(90deg, var(--blue), var(--green)); color: white; }
 .secondary { border: 1px solid var(--cyan); color: var(--cyan); }
-.secondary:hover { background: var(--cyan); color: var(--navy); }
 
-/* SNAPSHOT */
-.snapshot {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+/* CONTENT SECTIONS */
+.snapshot { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; padding: 2rem; }
+.snap { background: var(--charcoal); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; border: 1px solid #1e293b; }
+
+.build, .featured { padding: 4rem 5%; max-width: 1000px; margin: 0 auto; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.card { background: var(--charcoal); padding: 2rem; border-radius: 12px; border: 1px solid #1e293b; text-align: center; }
+
+/* SOCIAL MEDIA ICONS & FOOTER */
+.site-footer { padding: 3rem; text-align: center; border-top: 1px solid #1e293b; margin-top: 4rem; }
+.site-footer a { color: var(--cyan); text-decoration: none; font-size: 0.8rem; }
+
+.social-links {
+  display: flex;
+  justify-content: center;
   gap: 1.5rem;
-  padding: 4rem 5%;
+  margin-bottom: 1.5rem;
 }
 
-.snap {
-  padding: 2rem;
-  background: var(--charcoal);
-  border-radius: 15px;
-  text-align: center;
-  border: 1px solid rgba(255,255,255,0.05);
+.social-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(80%) sepia(10%) saturate(200%) hue-rotate(180deg);
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* GO TOP */
+.social-icon:hover {
+  transform: translateY(-3px);
+  filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(150deg) brightness(1.2);
+}
+
+img { max-width: 100%; height: auto; }
+
+/* FLOATING CONTROLS */
 #goTop {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 0.8rem 1.2rem;
-  background: var(--cyan);
-  border: none;
+  bottom: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  border: none;
   cursor: pointer;
   display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .main-nav { display: none; }
+  .hero-actions { flex-direction: column; }
 }
