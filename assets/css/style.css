@@ -1,42 +1,83 @@
-// 1. Loading Screen Logic
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
-        loader.style.opacity = '0';
-        setTimeout(() => loader.style.display = 'none', 500);
-    }, 2500); // 3-cycle animation feel
-});
-
-// 2. Anti-Copy & Source Code Protection
-document.addEventListener('keydown', (e) => {
-    // Block F12, Ctrl+Shift+I, Ctrl+U (View Source)
-    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) {
-        e.preventDefault();
-        alert("Security: Content Protection Active.");
-        return false;
-    }
-});
-
-// 3. Floating Button Scroll to Top
-const topBtn = document.getElementById('go-to-top');
-window.onscroll = () => {
-    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-        topBtn.style.display = "block";
-    } else {
-        topBtn.style.display = "none";
-    }
-};
-
-topBtn.onclick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-// 4. Dark/Light Mode Toggle
-function toggleTheme() {
-    const body = document.documentElement;
-    const current = body.getAttribute('data-theme');
-    body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+:root {
+    --neon-blue: #00d2ff;
+    --neon-green: #3aed1a;
+    --dark-bg: #0a0b10;
+    --light-bg: #f4f4f4;
+    --transition: all 0.4s ease;
 }
 
-// Attach to accessibility button
-document.getElementById('accessibility-btn').onclick = toggleTheme;
+[data-theme="dark"] {
+    --bg-color: var(--dark-bg);
+    --text-color: #ffffff;
+}
+
+[data-theme="light"] {
+    --bg-color: var(--light-bg);
+    --text-color: #1a1a1a;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Loading Screen Animation */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: var(--dark-bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.neon-text-logo {
+    font-size: 5rem;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 5px var(--neon-blue)); }
+    50% { filter: drop-shadow(0 0 25px var(--neon-green)); }
+    100% { filter: drop-shadow(0 0 5px var(--neon-blue)); }
+}
+
+/* Floating 3D Buttons */
+.float-btn {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1e1e1e, #111);
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    cursor: pointer;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+#accessibility-btn { bottom: 20px; left: 20px; }
+#go-to-top { bottom: 80px; left: 20px; display: none; }
+
+.float-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* Header UI */
+header {
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 1000;
+}
