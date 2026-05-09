@@ -18,28 +18,116 @@ body {
   line-height: 1.6;
 }
 
-/* LOADER */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: var(--navy);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.loader-ai {
-  font-size: clamp(3.5rem, 10vw, 6rem);
-  font-weight: 800;
-  background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green));
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: move 2s linear infinite;
-}
+  <!-- SEO PRIMARY -->
+  <title>AYMAN InnoTech | Smart & Sustainable Technology by Ayman Ullah</title>
+  <meta name="description" content="Official platform of AYMAN InnoTech. Exploring research, journals, and projects in Sustainable Engineering, AI, and Forestry by Ayman Ullah.">
+  <meta name="keywords" content="Ayman InnoTech, Ayman Ullah, Sustainable Technology, AI Research, Environmental Engineering, Smart Systems">
+  <meta name="author" content="Ayman Ullah">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://aymaninnotech.github.io/">
 
+  <!-- OPEN GRAPH / FACEBOOK -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AYMAN InnoTech | Innovation for a Sustainable Future">
+  <meta property="og:description" content="Research, Journals, and Projects focused on Sustainable Technologies and AI.">
+  <meta property="og:url" content="https://aymaninnotech.github.io/">
+  <meta property="og:image" content="assets/media/aymaninnotech@social-preview.png">
+
+  <!-- TWITTER -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AYMAN InnoTech | Ayman Ullah">
+  <meta name="twitter:image" content="assets/media/aymaninnotech@social-preview.png">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/jpeg" href="assets/media/aymaninnotech@logo.jpg">
+
+  <!-- FONTS & CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="dark">
+
+ <!-- 🔄 ENHANCED NEON LOADER -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-ai">AI</div>
+    <div class="loader-line"></div>
+    <p class="loader-text">AYMAN InnoTech</p>
+  </div>
+</div>
+  
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/media/aymaninnotech@logo.jpg" alt="AYMAN InnoTech Logo" class="brand-logo-img">
+      <img src="assets/media/aymaninnotech@brand-title.jpg" alt="AYMAN InnoTech" class="brand-title-img">
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="/blogs">Blogs</a>
+      <a href="/projects">Projects</a>
+      <a href="/journals">Journals</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <input type="search" placeholder="Search..." aria-label="Search">
+      <button id="themeToggle" aria-label="Toggle theme">☀️</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <h1>AYMAN InnoTech</h1>
+      <h2>Smart, Sustainable & Intelligent Technologies</h2>
+      <p>A personal innovation and research platform by <strong>Ayman Ullah</strong>, focused on engineering, environment, and future-ready intelligent systems.</p>
+      
+      <div class="hero-actions">
+        <a href="/projects" class="btn primary">View Projects</a>
+        <a href="/blogs" class="btn secondary">Read Blog</a>
+      </div>
+    </section>
+
+    <!-- SNAPSHOT SECTION -->
+    <section class="snapshot">
+      <div class="snap">Electrical & Computer Engineering</div>
+      <div class="snap">Forestry & Environment</div>
+      <div class="snap">AI & Data Systems</div>
+      <div class="snap">Sustainable Innovation</div>
+    </section>
+
+    <!-- BUILD SECTION -->
+    <section class="build">
+      <h3>What I’m Building</h3>
+      <ul>
+        <li>Smart Environmental Monitoring Systems</li>
+        <li>Renewable & Energy-Efficient Technologies</li>
+        <li>AI-Driven Climate & Sustainability Solutions</li>
+        <li>Open Knowledge & Research Platforms</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 <strong>AYMAN InnoTech</strong> · All rights reserved · <a href="/copyright">Copyright</a></p>
+  </footer>
+
+  <button id="goTop" aria-label="Go to top">↑</button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
 @keyframes move {
   0% { background-position: 0%; }
   100% { background-position: 100%; }
